@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { SafeAreaView } from 'react-native';
 
 import { Header } from '../components/Header';
 import { MyTasksList } from '../components/MyTasksList';
@@ -11,6 +12,7 @@ type Task = {
 }
 
 export function Home() {
+  const [dark, setDark] = useState(true);
   const [tasks, setTasks] = useState<Task[]>([]);
 
   function handleAddTask(newTaskTitle: string) {
@@ -24,7 +26,7 @@ export function Home() {
 
   function handleMarkTaskAsDone(id: number) {
     const updatedTasks = tasks.map(task => {
-      if(task.id === id)
+      if (task.id === id)
         task.done = !task.done;
       return task;
     });
@@ -38,17 +40,27 @@ export function Home() {
     setTasks(updatedTasks);
   }
 
-  return (
-    <>
-      <Header />
+  const handleDarkMode = () => {
+    setDark(!dark);
+  }
 
-      <TodoInput addTask={handleAddTask} />
+  return (
+    <SafeAreaView style={
+      dark ?
+        { flex: 1, backgroundColor: '#191622' }
+        :
+        { flex: 1, backgroundColor: '#eee' }
+    }>
+      <Header isDark={dark} darkMode={handleDarkMode} />
+
+      <TodoInput isDark={dark} addTask={handleAddTask} />
 
       <MyTasksList
         tasks={tasks}
         onPress={handleMarkTaskAsDone}
         onLongPress={handleRemoveTask}
+        isDark={dark}
       />
-    </>
+    </SafeAreaView>
   )
 }
