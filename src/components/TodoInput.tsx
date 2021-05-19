@@ -23,10 +23,10 @@ export function TodoInput({ addTask, isDark }: TodoInputProps) {
       styles.inputContainer, Platform.OS === 'ios'
         ? styles.inputIOSShadow
         : styles.inputAndroidShadow,
-      isDark ? styles.inputContainerDark : null
+      isDark && styles.inputContainerDark
     ]}>
       <TextInput
-        style={[styles.input, isDark ? styles.inputDark : null]}
+        style={[styles.input, isDark && styles.inputDark]}
         placeholder="Adicionar novo todo..."
         returnKeyType="send"
         onChangeText={setTask}
@@ -37,7 +37,7 @@ export function TodoInput({ addTask, isDark }: TodoInputProps) {
       <TouchableOpacity
         testID="add-new-task-button"
         activeOpacity={0.7}
-        style={[styles.addButton, isDark ? styles.addButtonDark : null]}
+        style={[styles.addButton, isDark && styles.addButtonDark]}
         onPress={handleAddNewTask}
       >
         <Image source={checkIcon} />

@@ -8,7 +8,7 @@ type Props = {
 
 export function Header({ isDark, darkMode }: Props) {
   return (
-    <View style={[styles.header, isDark ? styles.headerDark : null]}>
+    <View style={[styles.header, isDark && styles.headerDark]}>
       <View style={{flexDirection: 'row'}}>
         <Text style={styles.headerText}>to.</Text>
         <Text style={[styles.headerText, { fontFamily: 'Poppins-SemiBold' }]}>do</Text>

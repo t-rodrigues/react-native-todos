@@ -8,7 +8,7 @@ type FlatListHeaderComponentProps = {
 function FlatListHeaderComponent({ isDark } : FlatListHeaderComponentProps) {
   return (
     <View>
-      <Text style={[styles.header, isDark ? styles.headerDark : null]}>Minhas tasks</Text>
+      <Text style={[styles.header, isDark && styles.headerDark]}>Minhas tasks</Text>
     </View>
   )
 }
@@ -38,7 +38,7 @@ export function MyTasksList({ tasks, onLongPress, onPress, isDark }: MyTasksList
             onLongPress={() => onLongPress(item.id)}
             style={
               item.done
-                ? [styles.taskButtonDone, isDark ? styles.taskButtonDoneDark : null]
+                ? [styles.taskButtonDone, isDark && styles.taskButtonDoneDark]
                 : styles.taskButton
             }
           >
@@ -46,14 +46,14 @@ export function MyTasksList({ tasks, onLongPress, onPress, isDark }: MyTasksList
               testID={`marker-${index}`}
               style={
                 item.done
-                ? [styles.taskMarkerDone, isDark ? styles.taskMarkerDoneDark : null]
-                : [styles.taskMarker, isDark ? styles.taskMarkerDark : null]}
+                ? [styles.taskMarkerDone, isDark && styles.taskMarkerDoneDark]
+                : [styles.taskMarker, isDark && styles.taskMarkerDark]}
             />
             <Text
               style={[
                 item.done
-                ? [styles.taskTextDone, isDark ? styles.taskTextDoneDark : null]
-                : [styles.taskText, isDark ? styles.taskTextDark : null],
+                ? [styles.taskTextDone, isDark && styles.taskTextDoneDark]
+                : [styles.taskText, isDark && styles.taskTextDark],
               ]}
             >
               {item.title}
